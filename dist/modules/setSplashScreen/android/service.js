@@ -32,30 +32,31 @@ const addReactNativeSplashScreen = (backgroundColor, resizeMode = type_1.EResize
         pattern: /^.*<resources>.*[\r\n]/g,
         patch: file_processing_1.readFile(path_1.join(__dirname, '../../../../templates/android/values/styles-splash.xml')),
     });
-    const packageJson = require(path_1.join(process.cwd(), './package'));
-    const packageNameDirectory = packageName ? packageName.replace(/\./g, '/') : `com/${packageJson.name.toLowerCase()}`;
-    const mainActivityPath = `${config_1.ANDROID_MAIN_PATH}/java/${packageNameDirectory}/MainActivity.java`;
-    file_processing_1.applyPatch(mainActivityPath, {
-        pattern: /^(.+?)(?=import)/gs,
-        patch: 'import android.os.Bundle;\n' + 'import org.devio.rn.splashscreen.SplashScreen;\n',
-    });
-    const onCreateRegExp = /^.*onCreate.*[\r\n]/gm;
-    if (file_processing_1.readFile(mainActivityPath).match(onCreateRegExp)) {
-        file_processing_1.applyPatch(mainActivityPath, {
-            pattern: onCreateRegExp,
-            patch: 'SplashScreen.show(this, R.style.SplashScreenTheme);',
-        });
-    }
-    else {
-        file_processing_1.applyPatch(mainActivityPath, {
-            pattern: /^.*MainActivity.*[\r\n]/gm,
-            patch: '    @Override\n' +
-                '    protected void onCreate(Bundle savedInstanceState) {\n' +
-                '        SplashScreen.show(this, R.style.SplashScreenTheme);\n' +
-                '        super.onCreate(savedInstanceState);\n' +
-                '    }',
-        });
-    }
+    // This is crazy and not work well!!
+    // const packageJson = require(join(process.cwd(), './package'));
+    // const packageNameDirectory = packageName ? packageName.replace(/\./g, '/') : `com/${packageJson.name.toLowerCase()}`
+    // const mainActivityPath = `${ANDROID_MAIN_PATH}/java/${packageNameDirectory}/MainActivity.java`;
+    // applyPatch(mainActivityPath, {
+    //   pattern: /^(.+?)(?=import)/gs,
+    //   patch: 'import android.os.Bundle;\n' + 'import org.devio.rn.splashscreen.SplashScreen;\n',
+    // });
+    // const onCreateRegExp = /^.*onCreate.*[\r\n]/gm;
+    // if (readFile(mainActivityPath).match(onCreateRegExp)) {
+    //   applyPatch(mainActivityPath, {
+    //     pattern: onCreateRegExp,
+    //     patch: 'SplashScreen.show(this, R.style.SplashScreenTheme);',
+    //   });
+    // } else {
+    //   applyPatch(mainActivityPath, {
+    //     pattern: /^.*MainActivity.*[\r\n]/gm,
+    //     patch:
+    //       '    @Override\n' +
+    //       '    protected void onCreate(Bundle savedInstanceState) {\n' +
+    //       '        SplashScreen.show(this, R.style.SplashScreenTheme);\n' +
+    //       '        super.onCreate(savedInstanceState);\n' +
+    //       '    }',
+    //   });
+    // }
 };
 const generateAndroidSplashImages = (imageSource) => Promise.all(config_2.config.androidSplashImages.map(({ size, density }) => image_processing_1.generateResizedAssets(imageSource, `${config_1.ANDROID_MAIN_RES_PATH}/drawable-${density}/splash_image.png`, size, size, {
     fit: 'inside',
