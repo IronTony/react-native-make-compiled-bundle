@@ -22,9 +22,9 @@ You can get the list of available plugins by running `react-native -h` within yo
 | [set-splash](./docs/set-splash.md) | generate platform specific splash screens |
 
 
-Thanks to sandyputra for the fix. Here is also the builded version
-You can add the package name as below:
-`--bundle <com.example.app>`
+### Thanks to sandyputra for the fix. Here is also the builded version
+### You can add the package name as below:
+### `--bundle <com.example.app>`
 
 
 ## 💻 Local development
