@@ -27,6 +27,7 @@ Thanks to sandyputra for the fix. Now you can add the package name version.
 I also commented out the TS part where the package add the Splashscreen code in the native part of iOS and Android section.
 
 So if your package has a custom bundle name like `de.testing.test.app`, now you can add the package name as below:
+
 `--bundle <com.example.app>`
 
 
