@@ -22,9 +22,12 @@ You can get the list of available plugins by running `react-native -h` within yo
 | [set-splash](./docs/set-splash.md) | generate platform specific splash screens |
 
 
-### Thanks to sandyputra for the fix. Here is also the builded version
-### You can add the package name as below:
-### `--bundle <com.example.app>`
+## 🚨🚨🚨 Custom bundle name 🚨🚨🚨
+Thanks to sandyputra for the fix. Now you can add the package name version.
+I also commented out the TS part where the package add the Splashscreen code in the native part of iOS and Android section.
+
+So if your package has a custom bundle name like `de.testing.test.app`, now you can add the package name as below:
+`--bundle <com.example.app>`
 
 
 ## 💻 Local development
